@@ -18,7 +18,11 @@ export default function Marquee () {
     const row2Ref2 = useRef(null)
 
     useEffect (() => {
-        const makeMarquee = (ref1, ref2, speed) => {
+        const makeMarquee = (
+            ref1 : React.RefObject<HTMLElement>, 
+            ref2 : React.RefObject<HTMLElement>, 
+            speed : number 
+        ) => {
             let xPercent = 0
             const diraction = -0.1
 

@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
-import Footer from "../Layouts/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
