@@ -37,7 +37,7 @@ export default function Footer (){
             }
         })
         // ----------------------------- Animasi untuk Index ------------------------- //
-        const links = gsap.utils.toArray(".footer-link")
+        const links = gsap.utils.toArray<HTMLElement>(".footer-link")
         
         
         gsap.from(links,{
@@ -47,7 +47,7 @@ export default function Footer (){
             duration: 0.5,
             ease: "power4.out",
             scrollTrigger: {
-                trigger: links[0]?.parentNode, // trigger dari elemen pertama
+                trigger: links[0]?.parentNode as HTMLElement, // trigger dari elemen pertama
                 start: "top center",
                 toggleActions: "play none none reverse"
             }

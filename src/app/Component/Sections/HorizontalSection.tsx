@@ -9,15 +9,16 @@ import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HorizontalSection() {
-  const horizontalRef = useRef(null);
-  const section1Ref = useRef(null);
-  const section2Ref = useRef(null);
-  const section3Ref = useRef(null);
+  const horizontalRef = useRef<HTMLDivElement>(null);
+  const section1Ref = useRef<HTMLDivElement >(null);
+  const section2Ref = useRef<HTMLDivElement >(null);
+  const section3Ref = useRef<HTMLDivElement >(null);
   const spanRef = useRef(null);
   const line = useRef(null);
 
   useEffect(() => {
     if (!horizontalRef.current) return;
+    // if ( !section1Ref.current && !section2Ref.current && !section3Ref.current) return;
 
     const sections = gsap.utils.toArray(".panel"); // Tambahkan class 'panel' ke setiap section agar lebih mudah
     const totalSections = sections.length;
@@ -106,93 +107,97 @@ export default function HorizontalSection() {
     
     
     // -------------------- Animasi untuk section 2 --------------------------------
-    const spansSection2 = section2Ref.current.querySelectorAll(".span")
+    if(section2Ref.current) {
+      const spansSection2 = section2Ref.current.querySelectorAll(".span")
 
-    if (spansSection2.length > 0) {
-      const tlSection2 = gsap.timeline({
-        scrollTrigger : {
-          trigger: section2Ref.current,
-          containerAnimation : tl,
-          start: "left center",
-          toggleActions : "play none none reverse"
-        }
-      })
-      // -----Span ke 1 slide_dari_kiri-----------
-      tlSection2.from(spansSection2[0], {
-          x: -200,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out"
-      })
-      // ----- Span ke 2 flip-------------
-      if(spansSection2[1]) {
-        tlSection2.from(spansSection2[1], {
-            rotationX: 90,
-            opacity: 0,
-            transformOrigin: "top center",
-            duration: 0.8,
-            ease: "back.out(1.7)"
-        }, "-=0.4") // memulai lebih lambat
-      }
-       // ------ Span ke 3 dan seterunya ini buat secara dinamis fade + scale --------------
-        spansSection2.forEach((span, i ) => {
-          if(i >= 2) {
-              tlSection2.from(span,{
-                y : -100,
-                opacity : 0,
-                ease: "back.out(1.7)"
-              }, "+=0.2")
+      if (spansSection2.length > 0) {
+        const tlSection2 = gsap.timeline({
+          scrollTrigger : {
+            trigger: section2Ref.current,
+            containerAnimation : tl,
+            start: "left center",
+            toggleActions : "play none none reverse"
           }
         })
+        // -----Span ke 1 slide_dari_kiri-----------
+        tlSection2.from(spansSection2[0], {
+            x: -200,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        })
+        // ----- Span ke 2 flip-------------
+        if(spansSection2[1]) {
+          tlSection2.from(spansSection2[1], {
+              rotationX: 90,
+              opacity: 0,
+              transformOrigin: "top center",
+              duration: 0.8,
+              ease: "back.out(1.7)"
+          }, "-=0.4") // memulai lebih lambat
+        }
+        // ------ Span ke 3 dan seterunya ini buat secara dinamis fade + scale --------------
+          spansSection2.forEach((span, i ) => {
+            if(i >= 2) {
+                tlSection2.from(span,{
+                  y : -100,
+                  opacity : 0,
+                  ease: "back.out(1.7)"
+                }, "+=0.2")
+            }
+          })
+      }
     }
+
 
     // --------------------------------- Animasi pada section 3 ---------------------------------
+    if(section3Ref.current){
 
-    const spansSection3 = section3Ref.current.querySelectorAll(".span")
-
-    if (spansSection3.length > 0) {
-      const tlSection3 = gsap.timeline({
-        scrollTrigger : {
-          trigger: section3Ref.current,
-          containerAnimation : tl,
-          start: "left center",
-          toggleActions : "play none none reverse"
-        }
-      })
-      // -----Span ke 1 slide_dari_kiri-----------
-      tlSection3.from(spansSection3[0], {
-        rotationX: 90,
-        opacity: 0,
-        transformOrigin: "top center",
-        duration: 0.8,
-        ease: "back.out(1.7)"
-          // x: -200,
-          // opacity: 0,
-          // duration: 0.8,
-          // ease: "power3.out"
-      })
-      // ----- Span ke 2 flip-------------
-      if(spansSection3[1]) {
-        tlSection3.from(spansSection3[1], {
-           y: -100,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }, "-=0.4") // memulai sedikit lebih cepat
-      }
-       // ------  Span ke 3 dan seterunya ini buat secara dinamis fade + scale --------------
-        spansSection3.forEach((span, i ) => {
-          if(i >= 2) {
-              tlSection3.from(span,{
-                opacity: 0,
-                scale: 0.5,
-                duration: 0.8,
-                ease: "elastic.out(1, 0.5)"
-              }, "-=0.4")
+      const spansSection3 = section3Ref.current.querySelectorAll(".span")
+  
+      if (spansSection3.length > 0) {
+        const tlSection3 = gsap.timeline({
+          scrollTrigger : {
+            trigger: section3Ref.current,
+            containerAnimation : tl,
+            start: "left center",
+            toggleActions : "play none none reverse"
           }
         })
+        // -----Span ke 1 slide_dari_kiri-----------
+        tlSection3.from(spansSection3[0], {
+          rotationX: 90,
+          opacity: 0,
+          transformOrigin: "top center",
+          duration: 0.8,
+          ease: "back.out(1.7)"
+            // x: -200,
+            // opacity: 0,
+            // duration: 0.8,
+            // ease: "power3.out"
+        })
+        // ----- Span ke 2 flip-------------
+        if(spansSection3[1]) {
+          tlSection3.from(spansSection3[1], {
+             y: -100,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+          }, "-=0.4") // memulai sedikit lebih cepat
+        }
+         // ------  Span ke 3 dan seterunya ini buat secara dinamis fade + scale --------------
+          spansSection3.forEach((span, i ) => {
+            if(i >= 2) {
+                tlSection3.from(span,{
+                  opacity: 0,
+                  scale: 0.5,
+                  duration: 0.8,
+                  ease: "elastic.out(1, 0.5)"
+                }, "-=0.4")
+            }
+          })
+      }
     }
-   
 
 
        

@@ -10,17 +10,17 @@ export default function Marquee () {
 
     // ------------------------------------ Ini membuat Marquee jika ada 2 atau lebih kata -----------------------------------------------
      // row 1 
-    const row1Ref1 = useRef(null)
-    const row1Ref2= useRef(null)
+    const row1Ref1 = useRef<HTMLDivElement>(null)
+    const row1Ref2= useRef<HTMLDivElement>(null)
 
     // row 2 
-    const row2Ref1 = useRef(null)
-    const row2Ref2 = useRef(null)
+    const row2Ref1 = useRef<HTMLDivElement>(null)
+    const row2Ref2 = useRef<HTMLDivElement>(null)
 
     useEffect (() => {
         const makeMarquee = (
-            ref1 : React.RefObject<HTMLElement>, 
-            ref2 : React.RefObject<HTMLElement>, 
+            ref1 : React.RefObject<HTMLDivElement | null>, 
+            ref2 : React.RefObject<HTMLDivElement | null>, 
             speed : number 
         ) => {
             let xPercent = 0

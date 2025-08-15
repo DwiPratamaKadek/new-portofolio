@@ -1,12 +1,11 @@
 'use client'
 
 import Typewriter from 'typewriter-effect';
-import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 
 import { azeretMono } from '../fonts';
-import { useEffect,useRef } from 'react';
+import { useEffect} from 'react';
 
 
 const link = [
@@ -18,7 +17,7 @@ const link = [
 export default function ContactSection () {
     
     useEffect(() => {
-        const linkRef = gsap.utils.toArray(".linkRef")
+        const linkRef = gsap.utils.toArray<HTMLElement>(".linkRef")
         //  animasi untuk masuk
         gsap.fromTo(linkRef, 
             {opacity : 0, y: 50},
